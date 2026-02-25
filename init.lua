@@ -5,5 +5,3 @@ require("config.harpoon")
 require("config.treesitter")
 require("lsp.lua")
 require("lsp.python")
-
-
