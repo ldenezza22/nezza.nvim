@@ -6,7 +6,14 @@ vim.lsp.config['lua_lsp'] = {
 		Lua = {
 			runtime = {
 				version = 'LuaJIT',
-			}
+			},
+			diagnostics = { globals = { "vim" } },
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME,
+				},
+			},
 		}
 	}
 }
