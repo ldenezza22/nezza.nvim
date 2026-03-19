@@ -1,8 +1,14 @@
 vim.lsp.config("pyright", {
+	cmd = { "pyright-langserver", "--stdio" },
+	filetypes = { "python" },
+	root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', '.git' },
 	settings = {
 		python = {
 			analysis = {
 				typeCheckingMode = "basic",
+				autoSearchPaths = true,
+				useLibraryCodeForTypes = true,
+				diagnosticMode = "workspace",
 			},
 		},
 	},
@@ -12,21 +18,21 @@ vim.lsp.config("pyright", {
 vim.lsp.enable('pyright')
 
 vim.lsp.config("ruff", {
+	cmd = { "ruff", "server" },
+	filetypes = { "python" },
+	root_markers = { 'pyproject.toml', 'ruff.toml', 'setup.py', 'setup.cfg', '.git' },
+
 	init_options = {
 		settings = {
-			args = {},
+			configurationPreference = "filesystemFirst",
+			lineLength = 88,
+			lint = {
+				select = { "F", "E", "I", "RUFF" },
+				ignore = { "E501" },
+			},
+			format = { preview = false, },
 		},
 	},
-})
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-	callback = function()
-		vim.lsp.buf.code_action({
-			context = { only = { "source.fixAll.ruff" } },
-			apply = true,
-		})
-		vim.lsp.buf.format({ async = false })
-	end,
 })
 
 vim.lsp.enable("ruff")

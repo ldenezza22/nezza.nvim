@@ -37,12 +37,32 @@ return {
 			documentation = {
 				auto_show = false,
 				window = {
-					border = "rounded"
+					border = "rounded",
+					min_width = 30,
+					max_width = 70,
+					max_height = 15,
 				}
 			},
 			menu = {
-				border = "rounded"
+				border = "rounded",
+				min_width = 20,
+				max_height = 12
+
 			}
+		},
+		signature = {
+			enabled = true,
+			trigger = {
+				enabled = true,       -- Auto-show when you type ( or , etc.
+				show_on_insert = true, -- Show immediately when entering insert mode inside a call
+				show_on_trigger_character = true, -- Trigger on ( , . etc. (depends on LSP server)
+			},
+			window = {
+				min_width = 20,
+				max_width = 70,
+				max_height = 12,
+				border = "rounded",
+			},
 		},
 
 		-- Default list of enabled providers defined so that you can extend it
@@ -50,6 +70,7 @@ return {
 		sources = {
 			default = { 'lsp', 'path', 'snippets', 'buffer' },
 		},
+
 
 		-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
 		-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
