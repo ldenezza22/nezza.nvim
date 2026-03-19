@@ -27,7 +27,7 @@ vim.lsp.config("ruff", {
 			configurationPreference = "filesystemFirst",
 			lineLength = 88,
 			lint = {
-				select = { "F", "E", "I", "RUFF" },
+				select = { "I" , "F", "D", "E", "UP", "B"},
 				ignore = { "E501" },
 			},
 			format = { preview = false, },
