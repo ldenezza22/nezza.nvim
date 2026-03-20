@@ -49,6 +49,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
 
 		vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
+
 		vim.keymap.set("n", "<leader>lf", function()
 			vim.lsp.buf.format()
 		end, { desc = "Format file" })
