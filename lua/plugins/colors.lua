@@ -11,7 +11,7 @@ return {
 		    variables = {},
 		}
 	    ,
-	    on_highlights = function(highlights, colors)
+	    --[[on_highlights = function(highlights, colors)
 		highlights["@function"] = { fg = colors.blue }
 		highlights["@function.call"] = { fg = colors.blue }
 		highlights["@variable"] = { fg = colors.fg }
@@ -19,10 +19,9 @@ return {
 		highlights["@variable.member"] = { fg = colors.green }
 		highlights["@variable.builtin"] = { fg = colors.red, italic = true }
 		highlights["@constant"] = { fg = colors.orange }
-	    end,
+	    end,]]--
 	})
 	    vim.cmd.colorscheme("tokyonight-night")
-	    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	end
     },
     {

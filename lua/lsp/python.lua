@@ -1,11 +1,18 @@
-vim.lsp.config("pyright", {
-	cmd = { "pyright-langserver", "--stdio" },
+vim.lsp.config("basedpyright", {
+	cmd = { "basedpyright-langserver", "--stdio" },
 	filetypes = { "python" },
-	root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', '.git' },
+	root_markers = {
+		'pyproject.toml',
+		'setup.py',
+		'setup.cfg',
+		'requirements.txt',
+		'Pipfile',
+		'.git'
+	},
 	settings = {
-		python = {
+		basedpyright = {
 			analysis = {
-				typeCheckingMode = "basic",
+				typeCheckingMode = "standard",
 				autoSearchPaths = true,
 				useLibraryCodeForTypes = true,
 				diagnosticMode = "workspace",
@@ -15,7 +22,7 @@ vim.lsp.config("pyright", {
 })
 
 
-vim.lsp.enable('pyright')
+vim.lsp.enable('basedpyright')
 
 vim.lsp.config("ruff", {
 	cmd = { "ruff", "server" },
@@ -27,7 +34,7 @@ vim.lsp.config("ruff", {
 			configurationPreference = "filesystemFirst",
 			lineLength = 88,
 			lint = {
-				select = { "I" , "F", "D", "E", "UP", "B"},
+				select = { "I", "F", "E", "UP", "B" },
 				ignore = { "E501" },
 			},
 			format = { preview = false, },

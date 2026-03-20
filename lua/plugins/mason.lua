@@ -10,6 +10,7 @@ return {
 	    "basedpyright",
 	    "lua-language-server",
 	    "rust-analyzer",
+	    "ruff",
 	    -- DAPs
 	    "debugpy",
 	    "codelldb",
