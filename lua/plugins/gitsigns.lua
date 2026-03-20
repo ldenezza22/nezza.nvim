@@ -27,12 +27,18 @@ return {
 				vim.keymap.set("n", "<leader>hs", gs.stage_hunk, opts)
 				vim.keymap.set("n", "<leader>hr", gs.reset_hunk, opts)
 				vim.keymap.set("n", "<leader>hS", gs.stage_buffer, opts)
+				vim.keymap.set("n", "<leader>hR", gs.reset_buffer, opts)
 				vim.keymap.set("n", "<leader>hu", gs.undo_stage_hunk, opts)
 
 				-- Preview
 				vim.keymap.set("n", "<leader>hp", gs.preview_hunk, opts)
 				vim.keymap.set("n", "<leader>hi", gs.preview_hunk_inline, opts)
+				vim.keymap.set("n", "<leader>hw", gs.toggle_word_diff, opts)
 				vim.keymap.set("n", "<leader>hd", gs.diffthis, opts)
+				vim.keymap.set("n", "<leader>hD", function()
+					gs.diffthis('~')
+				end, opts)
+
 
 				-- Blame
 				vim.keymap.set("n", "<leader>hb", gs.toggle_current_line_blame, opts)
