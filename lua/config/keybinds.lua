@@ -1,8 +1,9 @@
 vim.g.mapleader = " "
+
+-- Basic commands
 vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>lf", function()
-	vim.lsp.buf.format()
-end, { desc = "Format file" })
+
+-- Window management
 vim.keymap.set("n", "<leader>ww", "<C-w>w", { noremap = true, silent = true, desc = "Cycle windows" })
 vim.keymap.set("n", "<leader>wh", "<C-w>h", { noremap = true, silent = true, desc = "Go to left window" })
 vim.keymap.set("n", "<leader>wj", "<C-w>j", { noremap = true, silent = true, desc = "Go to below window" })
@@ -18,8 +19,16 @@ vim.keymap.set("n", "<leader>w>", "<C-w>>", { noremap = true, silent = true, des
 vim.keymap.set("n", "<leader>w<", "<C-w><", { noremap = true, silent = true, desc = "Decreate window size" })
 vim.keymap.set("n", "<leader>w=", "<C-w>=", { noremap = true, silent = true, desc = "Equal all window sizes" })
 
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true, desc = "Close terminal"})
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true, desc = "Close terminal" })
 
+-- Fugitive
+vim.keymap.set("n", "<leader>gs", ":Git<CR>", { silent = true })
+vim.keymap.set("n", "<leader>gc", ":Git commit<CR>", { silent = true })
+vim.keymap.set("n", "<leader>gp", ":Git push<CR>", { silent = true })
+vim.keymap.set("n", "<leader>gl", ":Git log<CR>", { silent = true })
+vim.keymap.set("n", "<leader>gd", ":Git diff<CR>", { silent = true })
+
+-- LSP Keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
 		local opts = { buffer = event.buf }
@@ -40,5 +49,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
 
 		vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
+		vim.keymap.set("n", "<leader>lf", function()
+			vim.lsp.buf.format()
+		end, { desc = "Format file" })
 	end,
 })
