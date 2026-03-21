@@ -28,6 +28,11 @@ vim.keymap.set("n", "<leader>gp", ":Git push<CR>", { silent = true })
 vim.keymap.set("n", "<leader>gl", ":Git log<CR>", { silent = true })
 vim.keymap.set("n", "<leader>gd", ":Git diff<CR>", { silent = true })
 
+-- Conform
+vim.keymap.set("n", "<leader>cf", function()
+	require("conform").format({ async = true, lsp_fallback = true })
+end, { desc = "Format file" })
+
 -- LSP Keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
@@ -55,4 +60,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, { desc = "Format file" })
 	end,
 })
-

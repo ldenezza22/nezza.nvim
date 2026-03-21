@@ -1,30 +1,35 @@
 return {
-    "mason-org/mason.nvim",
-    build = ":MasonUpdate",
-    config = function()
-	require("mason").setup()
+	"mason-org/mason.nvim",
+	build = ":MasonUpdate",
+	config = function()
+		require("mason").setup()
 
-	local registry = require("mason-registry")
-	local ensure_installed = {
-	    -- LSPs
-	    "basedpyright",
-	    "lua-language-server",
-	    "rust-analyzer",
-	    "ruff",
-	    -- DAPs
-	    "debugpy",
-	    "codelldb",
-	}
+		local registry = require("mason-registry")
+		local ensure_installed = {
+			-- LSPs
+			"basedpyright",
+			"lua-language-server",
+			"rust-analyzer",
 
-	registry.refresh(
-	    function()
-		for _, name in ipairs(ensure_installed) do
-		    local pkg = registry.get_package(name)
-		    if not pkg:is_installed() then
-			pkg:install()
-		    end
-		end
-	    end
-	)
-    end,
+			-- Formatters
+			"ruff",
+			"stylua",
+			"clang-format",
+			"sqlfmt",
+			"prettier",
+
+			-- DAPs
+			"debugpy",
+			"codelldb",
+		}
+
+		registry.refresh(function()
+			for _, name in ipairs(ensure_installed) do
+				local pkg = registry.get_package(name)
+				if not pkg:is_installed() then
+					pkg:install()
+				end
+			end
+		end)
+	end,
 }
